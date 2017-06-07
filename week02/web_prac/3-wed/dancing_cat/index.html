@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dancing Ryan</title>
+</head>
+<body>
+
+<button id="start">start</button>
+<button id="goFaster">go faster</button>
+<button id="stop">stop</button>
+<img style="position: relative; left: 0px; top: 80px;" src="walkingdog.gif" alt="">
+<script>
+var movePixels = 10;
+var timerId;
+
+var start = document.querySelector('#start');
+var dogImg = document.querySelector('img');
+
+start.addEventListener('click', function(){
+  timerId = setInterval(dogwalk, 400);
+})
+
+var goFaster = document.querySelector('#goFaster');
+goFaster.addEventListener('click', function(){
+  timerId = setInterval(dogwalk, 200);
+})
+
+var stop = document.querySelector('#stop');
+stop.addEventListener('click', function(){
+  clearInterval(timerId);
+})
+
+var dogwalk = function() {
+  var currentleft = parseInt(dogImg.style.left);
+  dogImg.style.left = (currentleft + movePixels) + 'px';
+  console.log(currentleft)
+  // var currentright = parseInt(dogImg.style.left);
+  // dogImg.style.left = (currentleft - movePixels) + 'px';
+
+  if (currentleft > (window.innerwidth-dogImg.width)){
+    dogImg.style.left = '0px';
+  // } else if (currentright < currentleft) {
+  //   dogImg.style.left = - '10px'
+  }
+}
+</script>
+</body>
+</html>

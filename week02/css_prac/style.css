@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  background: red;
+  text-align: center
+}
+li {
+  display: inline;
+  padding: 3px;
+}
+span {
+
+}
