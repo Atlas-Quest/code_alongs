@@ -2,5 +2,5 @@
 
 <% @dishes.each do |dish| %>
   <h2><a href="/dishes/<%=dish['id']%>"><%= dish['name'] %></h2>
-  <img src="<%= dish[:image_url] %>" alt="">
+  <img src="<%= dish['image_url'] %>" alt="">
 <% end %>
