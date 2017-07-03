@@ -2,6 +2,7 @@ require 'pry'
 require 'sinatra'
 require 'sinatra/reloader'
 require 'pg'
+require_relative 'models/dish'
 
 # reading
 # get '/dishes'
@@ -32,8 +33,9 @@ get '/dishes' do
 end
 
 get '/dishes/:id' do
-  sql = "SELECT * FROM dishes WHERE id = #{params[:id]};"
+  sql = ("SELECT * FROM dishes WHERE id = #{params[:id]}")
   @dish = run_sql(sql)[0]
+  @comments = run_sql("SELECT * FROM comments WHERE dish_id = #{params[:id]}")
   erb :dish_details
 end
 
@@ -57,6 +59,20 @@ delete '/dishes/:id' do
   run_sql("DELETE FROM dishes WHERE id = #{params[:id]};")
   redirect '/dishes'
 end
+
+post '/comments' do
+  sql = "INSERT INTO comments(body, dish_id) VALUES ('#{params[:body]}', #{params[:dish_id]})"
+  run_sql(sql)
+  redirect "/dishes/#{params[:dish_id]}"
+end
+
+# get '/dishes/:id' do
+#   sql = ("SELECT * FROM dishes WHERE id = #{params[:id]}")
+#   @dish = run_sql(sql)[0]
+#   @comments = run_sql("SELECT * FROM comments WHERE dish_id = #{params[:id]}")
+#
+#   erb :dish_details
+# end
 
 # CRUD ---> Wireframe needs to be created...
 # get /dish_list get /dish_details/id

@@ -13,3 +13,13 @@ CREATE TABLE comments(
   body TEXT,
   dish_id INTEGER
 );
+
+CREATE TABLE dish_types (
+  id SERIAL4 PRIMARY KEY
+  name VARCHAR(400)
+);
+
+ALTER TABLE dishes
+ADD COLUMN
+dish_type_id
+INTEGER

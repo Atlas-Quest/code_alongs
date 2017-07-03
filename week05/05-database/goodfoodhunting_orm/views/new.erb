@@ -1,0 +1,13 @@
+<h2>new dish</h2>
+<form action="/dishes" method="post">
+  <label for="">name</label>
+  <input type="text" name="name" value="<%= @dish['name'] %>">
+  <label for="">image url</label>
+  <input type="text" name="image_url" value="<%= @dish['image_url'] %>">
+  <select name="dish_type.id" id="">
+    <% @dish_types.each do |dish_type| %>
+      <option value="<%= dish_type.id %>"><%= dish_type.name %></option>
+    <% end %>
+  </select>
+  <button>create</button>
+</form>
