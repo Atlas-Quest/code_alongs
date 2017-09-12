@@ -1,22 +1,43 @@
+// var btn = document.querySelector('button');
 
+var $btn = $('button');
 
+$btn.on('click', function(event) {
 
-var btn = document.querySelector('button');
-
-btn.addEventListener('click', function(event){
   event.preventDefault();
-  console.log('search movie with ajax');
 
   var movieName = document.querySelector('input').value;
 
   var inputBox = document.querySelector('input').value;
 
   var settings = {
-    url: 'http://omdbapi.com/?t=' + inputBox + '&apikey=2f6435d9'
+    url: 'http://omdbapi.com',
+    data: {
+      t: movieName,
+      apikey: '2f6435d9'
   }
+}
+//
+// btn.addEventListener('click', function(event){
+//   event.preventDefault();
+//   console.log('search movie with ajax');
+//
+//   var movieName = document.querySelector('input').value;
+//
+//   var inputBox = document.querySelector('input').value;
+//
+//   var settings = {
+//     url: 'http://omdbapi.com',
+//     data: {
+//       t: movieName,
+//       apikey: '2f6435d9'
+//     }
+//   }
 
   jQuery.ajax(settings).done(function(response) {
-    console.log(response.Title);
+    var newParagraph = document.createElement('p');
+    newParagraph.textContent = response.Year
+    document.querySelector('.response').append(newParagraph);
   })
   console.log('after ajax function call');
 });

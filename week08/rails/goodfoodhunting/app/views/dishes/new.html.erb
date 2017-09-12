@@ -1,0 +1,10 @@
+<form action="/dishes" method="post">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  <label for="name">Dish</label>
+  <input type="text" name="dish">
+
+  <label for="Image Url"></label>
+  <textarea name="image_url" rows="8" cols="80"></textarea>
+
+  <button>Create</button>
+</form>
